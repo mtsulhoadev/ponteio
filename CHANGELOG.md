@@ -66,3 +66,18 @@
 ### Melhorado
 - Senhas agora criptografadas com `password_hash()` / `password_verify()`
 - Login atualizado para validar com hash seguro
+
+---
+
+## [0.4.0] — 2026-06-29
+### Adicionado
+- Tela de consulta de colaboradores (`admin/colaboradores.php`)
+  - Cards de resumo: total, ativos, frentistas, gerentes, caixas lançados
+  - Filtros por nome, perfil e posto
+  - Coluna com quantidade de caixas lançados e data do último fechamento
+- Tela de detalhe do colaborador (`admin/detalhe_colaborador.php`)
+  - Filtro de período (data inicial e final)
+  - Cards de resumo do período: total pedido, depositado, diferença e dinheiro
+  - Tabela com todos os fechamentos: dinheiro, cartões, nota a prazo, despesas, diferença
+  - Modal de detalhe completo por caixa (mostra apenas campos com valor)
+- Sidebar atualizada com link para Colaboradores e Usuários separados

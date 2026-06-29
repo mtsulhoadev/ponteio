@@ -2,7 +2,7 @@
 $host    = 'localhost';
 $banco   = 'ponteio_caixa';
 $usuario = 'root';
-$senha   = '';  // altere conforme sua configuração
+$senha   = 'admin';  // altere conforme sua configuração
 
 $pdo = new PDO(
     "mysql:host=$host;dbname=$banco;charset=utf8mb4",

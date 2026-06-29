@@ -1,10 +1,9 @@
 <?php
-// includes/sidebar.php — incluir em todas as páginas autenticadas
-// Requer que session_start() e require_auth() já tenham sido chamados
 $_perfil      = $_SESSION['perfil']       ?? '';
 $_nome        = $_SESSION['usuario_nome'] ?? '';
 $_posto_nome  = $_SESSION['posto']        ?? '';
 $_pag_atual   = basename($_SERVER['PHP_SELF']);
+
 function nav_link($href, $icon, $label, $atual) {
     $active = (basename($href) === $atual) ? ' class="active"' : '';
     echo "<a href=\"$href\"$active><span class=\"ic\">$icon</span> $label</a>";
@@ -28,20 +27,20 @@ function nav_link($href, $icon, $label, $atual) {
 
   <nav>
     <div class="nav-section">Menu</div>
-    <?php nav_link('/ponteio/dashboard.php',   '🏠', 'Início',         $_pag_atual) ?>
-    <?php nav_link('/ponteio/mapa_caixa.php',  '📋', 'Mapa de Caixa', $_pag_atual) ?>
-    <?php nav_link('/ponteio/historico.php',   '🕐', 'Histórico',     $_pag_atual) ?>
+    <?php nav_link('/ponteio/dashboard.php',  '🏠', 'Início',        $_pag_atual) ?>
+    <?php nav_link('/ponteio/mapa_caixa.php', '📋', 'Mapa de Caixa',$_pag_atual) ?>
+    <?php nav_link('/ponteio/historico.php',  '🕐', 'Histórico',    $_pag_atual) ?>
 
-    <?php if (is_gerente()): ?>
+    <?php if (in_array($_perfil, ['admin','gerente'])): ?>
     <div class="nav-section">Gerência</div>
-    <?php nav_link('/ponteio/fechamentos.php', '📊', 'Fechamentos do Posto', $_pag_atual) ?>
+    <?php nav_link('/ponteio/fechamentos.php','📊','Fechamentos do Posto',$_pag_atual) ?>
     <?php endif; ?>
 
-    <?php if (is_admin()): ?>
+    <?php if ($_perfil === 'admin'): ?>
     <div class="nav-section">Administração</div>
-    <?php nav_link('/ponteio/admin/usuarios.php', '👥', 'Usuários',  $_pag_atual) ?>
-    <?php nav_link('/ponteio/admin/postos.php',   '🏪', 'Postos',    $_pag_atual) ?>
-    <?php nav_link('/ponteio/admin/relatorios.php','📈','Relatórios', $_pag_atual) ?>
+    <?php nav_link('/ponteio/admin/colaboradores.php','👥','Colaboradores', $_pag_atual) ?>
+    <?php nav_link('/ponteio/admin/usuarios.php',     '⚙', 'Usuários',     $_pag_atual) ?>
+    <?php nav_link('/ponteio/admin/postos.php',       '🏪','Postos',       $_pag_atual) ?>
     <?php endif; ?>
   </nav>
 
